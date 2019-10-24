@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/24 16:49:58 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/24 17:40:22 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct	s_params
 
 // body
 int			ft_printf(char const *str, ...);
-char 		*get_flags(char **s);
-void 		do_forrest(char **s, t_params *data, char *flags);
+char 		*get_flags(char *s, t_params *data);
+void 		do_forrest(char *s, t_params *data, char *flags);
 
 // utils
 int 		ft_isflag(char c);

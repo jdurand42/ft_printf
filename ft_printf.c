@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/24 16:51:45 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/24 17:43:00 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int 	get_width
 
 void 	do_forrest(char *s, t_params *data, char *flags)
 {
-	char 	type;
 
 	//bilbo_flaggings(flags);
 	if (s[data->i] == 'c')
@@ -58,14 +57,12 @@ int 	ft_isflag(char c)
 
 char 	*get_flags(char *s, t_params *data)
 {
-	char	flags;
-	int		i;
+	char	*flags;
 
 	data->j = data->i;
 	while (s[data->i] != 0 && !ft_isflag(s[data->i]))
 		(data->j)++;
 	flags = ft_stndup(s[data->i], data->j - data->i); //flags == NULL si rien
-	s = &(s[i)];
 	return (flags);
 }
 
@@ -80,8 +77,7 @@ int		ft_printf(char const *str, ...)
 	if (!(data = ft_init_struct(data, ap)))
 	 	return (0);// creer va_list et ini count a 0
 	s = (char *)str;
-	i = 0;
-	va_start(ap, s);
+	va_start(ap, str);
 	while (s[data->i])
 	{
 		if (s[data->i] != '%')
@@ -92,7 +88,7 @@ int		ft_printf(char const *str, ...)
 		else
 			do_forrest(s, data, get_flags(&s[++(data->i)]));
 	}
-	va_end(data->ap, s);
+	va_end(data->ap);
 	r_count = data->count; // checker pour 0
 	if (data)
 		free(data);
