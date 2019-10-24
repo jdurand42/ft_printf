@@ -6,14 +6,13 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/22 20:19:53 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/24 16:51:45 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdarg.h>
+#include "ft_printf.h"
 
-#define FLAGS " .o-*"
+#define FLAGS ".0-*"
 /*
 char	*get_flags
 
@@ -24,71 +23,102 @@ int 	get_preci
 int 	get_width
 */
 
-void 	do_forrest(char **s, va_list ap, char *flags)
+void 	do_forrest(char *s, t_params *data, char *flags)
 {
 	char 	type;
 
 	//bilbo_flaggings(flags);
-	if (*s == 'c')
-		print_char(va_arg(ap, char), flags);
-	if (*s == 's')
-		print_str(va_arg(ap, char *), flags);
-	if (*s == 'p')
-		print_void(va_arg(ap, void *), flags);
-	if (*s == 'd' || *s == 'i')
-		print_int(va_arg(ap, int), flags);
-	if (*s == 'u')
-		print_usint(va_arg(ap, unsigned int), flags);
-	if (*s == 'x')
-		print_hexa(va_arg(ap, unsigned int), flags);
-	if (*s == 'X')
-		print_up_hexa(va_arg(ap, unsigned int), flags);
-	if (*s == '%')
-		ft_putchar('%');
+	if (s[data->i] == 'c')
+		print_char(data, flags);
+	if (s[data->i] == 's')
+		print_str(data, flags);
+	if (s[data->i] == 'p')
+		print_void(data, flags);
+	if (s[data->i] == 'd' || *s == 'i')
+		print_int(data, flags);
+	if (s[data->i] == 'u')
+		print_usint(data, flags);
+	if (s[data->i] == 'x')
+		print_hexa(data, flags);
+	if (s[data->i] == 'X')
+		print_up_hexa(data, flags);
+	if (s[data->i] == '%')
+		ft_putchar(s[data->i]);
 	if (flags)
 		free(flags);
-	*s++; // checker comportement de printf si arg invalide
+	(data->i)++; // checker comportement de printf si arg invalide
 }
 
 int 	ft_isflag(char c)
 {
-	if (ft_charstr(c, FLAGS))
+	if (ft_charstrcmp(c, FLAGS))
 		return (1);
 	return (0);
 }
 
-char 	*get_flags(char **s)
+char 	*get_flags(char *s, t_params *data)
 {
-	char flags;
-	int i;
+	char	flags;
+	int		i;
 
-	i = 0; // par sur du *s[i] i = 0
-	while (*s[i] != 0 && !ft_isflag(*s[i]))
-		i++;
-	flags = ft_stndup(*s, &*s[i] - *s); //flags == NULL si rien
-	s = &*s[i];
+	data->j = data->i;
+	while (s[data->i] != 0 && !ft_isflag(s[data->i]))
+		(data->j)++;
+	flags = ft_stndup(s[data->i], data->j - data->i); //flags == NULL si rien
+	s = &(s[i)];
 	return (flags);
 }
 
 //cspdiuxX%
-int		ft_printf(char const *str, ..)
+int		ft_printf(char const *str, ...)
 {
-	va_list ap;
-	int		count;
-	char	*s;
+	char		*s;
+	t_params	*data;
+	size_t		r_count;
+	va_list		*ap;
 
+	if (!(data = ft_init_struct(data, ap)))
+	 	return (0);// creer va_list et ini count a 0
 	s = (char *)str;
 	i = 0;
-	//init_f_tab(ftab);
-	va_start(ap, str);
-	while (*s)
+	va_start(ap, s);
+	while (s[data->i])
 	{
-		if (*s != '%')
+		if (s[data->i] != '%')
 		{
-			ft_putchar(*s++);
-			count++;
+			ft_putchar(s[(data->i)++]);
+			data->count += 1;
 		}
 		else
-			do_forrest(&s, ap, get_flags(&++s));
+			do_forrest(s, data, get_flags(&s[++(data->i)]));
 	}
+	va_end(data->ap, s);
+	r_count = data->count; // checker pour 0
+	if (data)
+		free(data);
+	return (r_count);
 }
+
+/*
+SYNTHAXE:
+void lol2(char **s2)
+{
+  while (**s2)
+    (*s2)++;
+}
+
+void lol(char **s2)
+{
+  while (**s2 != '5')
+    (*s2)++;
+  lol2(s2);
+}
+
+int main() {
+  char const s[] = "12345678910";
+  char *s2 = (char *)s;
+  lol(&s2);
+  s;
+  printf("%s\n", s2);
+  return 0;
+} */
