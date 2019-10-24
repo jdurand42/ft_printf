@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/24 17:43:00 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/24 17:44:57 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		ft_printf(char const *str, ...)
 			data->count += 1;
 		}
 		else
-			do_forrest(s, data, get_flags(&s[++(data->i)]));
+			do_forrest(s, data, get_flags(&s[++(data->i)], data));
 	}
 	va_end(data->ap);
 	r_count = data->count; // checker pour 0
