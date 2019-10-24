@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/24 17:44:57 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/24 20:25:53 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ int 	get_preci
 
 int 	get_width
 */
+//void 	(*f)()[6];
+
+
 
 void 	do_forrest(char *s, t_params *data, char *flags)
 {
-
+	// if ((id = get_id(*format, "cspduxX%")))
+	// 	f[id](data, flags);
 	//bilbo_flaggings(flags);
 	if (s[data->i] == 'c')
 		print_char(data, flags);

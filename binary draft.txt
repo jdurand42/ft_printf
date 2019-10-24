@@ -1,0 +1,54 @@
+#define FLAG_MINUS 1
+#define FLAG_PLUS	2
+#define FLAG_SPACE	0b100
+
+s_int	get_id(char *flags, char c)
+{
+	int	i;
+
+	i = 0;
+	while (flags[i])
+		if (flags[i++] == c)
+			return (i - 1);
+	return (-1);
+}
+while (1)
+	while (etat)
+		on = 1;
+
+
+etat ^= 1;
+
+
+void	parse_flags(char *format)
+{
+	int		flags;
+
+	flags = 0;
+	while ((id = get_id("-+ ", *format++)) != -1)
+		flags |= (1 << id);
+
+	if (flags & FLAG_MINUS)
+}
+flags = 0b0000000;
+
+int	tmp = 1 << 0;
+tmp == 0b00000001;
+flags |= tmp;
+0b0 | 0b1;
+
+
+
+0b1
+0b1 <<
+0b10 <<1
+0b100
+0b01 | 0b10 == 0b11
+0b11 | 0b10 == 0b11
+
+(chiffre & 1)
+0b100
+0b1110111 & 000000b101 == 0b101
+0b1111000 & 0b0000111 == 0000000
+
+0b111 & 0b001 == 0b001
