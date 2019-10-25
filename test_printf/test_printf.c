@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initialisations.c                               :+:      :+:    :+:   */
+/*   test_printf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 11:21:53 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/25 10:54:40 by jdurand          ###   ########.fr       */
+/*   Created: 2019/10/25 10:19:55 by jdurand           #+#    #+#             */
+/*   Updated: 2019/10/25 12:07:10 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
 
-void 	ft_init_struct(t_params *data)
+int main(int ac, char **av)
 {
-	data->count = 0;
-	data->i = 0;
-	data->j = 0;
+	int a = 2;
+	int hexa = 123456789;
+	int *pa = &a;
+
+	printf("rien%.*s\n", 3, "dsadasdasdsad");
 }
