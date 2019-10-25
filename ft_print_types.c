@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/25 12:06:30 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/25 17:49:41 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void 	print_char(t_params *data, char *flags)
 
 void 	ft_putstr_pf(char *s, t_params *data)
 {
-		(void)flags;
+		//(void)flags;
 		while (*s)
 		{
 			ft_putchar(*s++);
@@ -39,7 +39,7 @@ void 	print_str(t_params *data, char *flags)
 	s_arg = va_arg(data->ap, char*);
 	if (!s_arg)
 		return ;
-	ft_putstr_pf(s_arg, data, flags);
+	ft_putstr_pf(s_arg, data);
 }
 
 void 	print_void(t_params *data, char *flags)
@@ -49,8 +49,8 @@ void 	print_void(t_params *data, char *flags)
 	(void)flags;
 	if(!(s_adress = ft_itoa_base(va_arg(data->ap, unsigned int), HEXA)))
 		return ;
-	ft_putstr_pf("0x", data, flags);
-	ft_putstr_pf(s_adress, data, flags);
+	ft_putstr_pf("0x", data);
+	ft_putstr_pf(s_adress, data);
 	free(s_adress);
 	s_adress = NULL;
 }
@@ -63,7 +63,7 @@ void 	print_int(t_params *data, char *flags)
 	(void)flags;
 	if (!(s_int = ft_itoa(va_arg(data->ap, int))))
 		return ;
-	ft_putstr_pf(s_int, data, flags);
+	ft_putstr_pf(s_int, data);
 	free(s_int);
 	s_int = NULL;
 }
@@ -76,7 +76,7 @@ void 	print_usint(t_params *data, char *flags)
 	(void)flags;
 	if (!(s_usint = ft_itoa(va_arg(data->ap, unsigned int))))
 		return ;
-	ft_putstr_pf(s_usint, data, flags);
+	ft_putstr_pf(s_usint, data);
 	free(s_usint);
 	s_usint = NULL;
 }
@@ -89,7 +89,7 @@ void 	print_hexa(t_params *data, char *flags)
 	(void)flags;
 	if (!(s_hexa = ft_itoa_base(va_arg(data->ap, unsigned int), HEXA)))
 		return ;
-	ft_putstr_pf(s_hexa, data, flags);
+	ft_putstr_pf(s_hexa, data);
 	free(s_hexa);
 	s_hexa = NULL;
 }
@@ -102,7 +102,7 @@ void 	print_up_hexa(t_params *data, char *flags)
 	(void)flags;
 	if (!(s_bighexa = ft_itoa_base(va_arg(data->ap, unsigned int), BIG_HEXA)))
 		return ;
-	ft_putstr_pf(s_bighexa, data, flags);
+	ft_putstr_pf(s_bighexa, data);
 	free(s_bighexa);
 	s_bighexa = NULL;
 }

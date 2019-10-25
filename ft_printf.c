@@ -6,25 +6,13 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/25 12:09:46 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/25 18:08:44 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 #define FLAGS ".0-*"
-/*
-char	*get_flags
-
-char	get_param
-
-int 	get_preci
-
-int 	get_width
-*/
-//void 	(*f)()[6];
-
-
 
 void 	do_forrest(char *s, t_params *data, char *flags)
 {
@@ -55,23 +43,33 @@ void 	do_forrest(char *s, t_params *data, char *flags)
 
 int 	ft_isflag(char c)
 {
-	if (ft_charstrcmp(c, FLAGS))
-		return (1);
+	int i = 0;
+	char *str;
+
+	str = ".0-*";
+	while (str[i])
+	{
+		if (c == str[i])
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
-int 	get_flags(char *s, t_params data)
+char 	*get_flags(char *s, t_params *data)
 {
 	char	*flags;
 
-	data.j = data.i;
-	(void)s;
-	printf("j :%zu, i: %zu\n", data.j, data.i);
-//	while (s[data.j] != 0) //&& ft_isflag(s[data.j]))
-//		data.j += 1;
-//	printf("j :%zu, i: %zu\n", data.j, data.i);
-//	flags = ft_strndup(&s[data.i], data.j - data.i); //flags == NULL si rien
-	return (flags = NULL);
+	flags = NULL;
+	data->i += 1;
+	data->j = data->i;
+	//printf("j :%zu, i: %zu\n", data->j, data->i);
+	while (ft_isflag(s[data->j]))
+		data->j += 1;
+	flags = ft_strndup(&s[data->i], data->j - data->i); //flags == NULL si rien
+	data->i = data->j;
+	printf("Flags: %s\n", flags);
+	return (flags);
 }
 
 //cspdiuxX%
@@ -86,6 +84,8 @@ int		ft_printf(char const *str, ...)
 	va_start(data.ap, str);
 	s = (char *)str;
 	//va_start(ap, str);
+	if (s[data.i] == 0)
+		ft_putchar(0);
 	while (s[data.i])
 	{
 		if (s[data.i] != '%')
@@ -94,7 +94,7 @@ int		ft_printf(char const *str, ...)
 			data.count += 1;
 		}
 		else
-			do_forrest(s, &data, get_flags(&s[++(data.i)]));//get_flags(&s[data.i], data));
+			do_forrest(s, &data, get_flags(s, &data));//get_flags(&s[data.i], data));
 	}
 	va_end(data.ap);
 	return (data.count);
@@ -103,43 +103,18 @@ int		ft_printf(char const *str, ...)
 int 	main(int ac, char **av)
 {
 	int count = 0;
-	unsigned int usi1 = 125584855;
-	unsigned char uc1 = 255;
+//	unsigned int usi1 = 125584855;
+//	unsigned char uc1 = 255;
 
 	(void)ac;
 	(void)av;
 	//count = ft_printf("str: %s\nstr2 : %s\nint 1: %d\n", "lololol", "str2", 25);
-	count = ft_printf("usi: %u\nint neg: %d\nchar : %c\nusi hexa: %x\n%X\n", usi1, -25884, '-', usi1, usi1);
-	count = ft_printf("unsigned char: %u\n", uc1);
-	count = ft_printf("int i: %i\n", 1254);
+	//count = ft_printf("usi: %u\nint neg: %d\nchar : %c\nusi hexa: %x\n%X\n", usi1, -25884, '-', usi1, usi1);
+	//count = ft_printf("unsigned char: %u\n", uc1);
+	count = ft_printf("int i: %.0**i\ndsadasdas%....00d\n", 1254, 585);
 	count = ft_printf("%%\n");
 
 
 	printf("mpf: count: %d\n", count);
 	//printf("rpf c: %d\n", printf("testtesttest\n"));
 }
-
-
-/*
-SYNTHAXE:
-void lol2(char **s2)
-{
-  while (**s2)
-    (*s2)++;
-}
-
-void lol(char **s2)
-{
-  while (**s2 != '5')
-    (*s2)++;
-  lol2(s2);
-}
-
-int main() {
-  char const s[] = "12345678910";
-  char *s2 = (char *)s;
-  lol(&s2);
-  s;
-  printf("%s\n", s2);
-  return 0;
-} */
