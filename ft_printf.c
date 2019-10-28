@@ -6,38 +6,33 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/25 18:08:44 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:00:34 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-#define FLAGS ".0-*"
-
-void 	do_forrest(char *s, t_params *data, char *flags)
+void 	do_forrest(char *s, t_params *data, char *s_flags)
 {
-	// if ((id = get_id(*format, "cspduxX%")))
-	// 	f[id](data, flags);
-	//bilbo_flaggings(flags);
-	//data->i += 1;
+	bilbo_flaggings(s_flags, data);
 	if (s[data->i] == 'c')
-		print_char(data, flags);
+		print_char(data);
 	else if (s[data->i] == 's')
-		print_str(data, flags);
+		print_str(data);
 	else if (s[data->i] == 'p')
-		print_void(data, flags);
+		print_void(data);
 	else if (s[data->i] == 'd' || s[data->i] == 'i')
-		print_int(data, flags);
+		print_int(data);
 	else if (s[data->i] == 'u')
-		print_usint(data, flags);
+		print_usint(data);
 	else if (s[data->i] == 'x')
-		print_hexa(data, flags);
+		print_hexa(data);
 	else if (s[data->i] == 'X')
-		print_up_hexa(data, flags);
+		print_up_hexa(data);
 	else if (s[data->i] == '%')
 		ft_putchar(s[data->i]);
-	if (flags)
-		free(flags);
+	if (s_flags)
+		free(s_flags);
 	data->i += 1; // checker comportement de printf si arg invalide
 }
 
@@ -46,7 +41,7 @@ int 	ft_isflag(char c)
 	int i = 0;
 	char *str;
 
-	str = ".0-*";
+	str = "-0.*";
 	while (str[i])
 	{
 		if (c == str[i])
@@ -58,18 +53,19 @@ int 	ft_isflag(char c)
 
 char 	*get_flags(char *s, t_params *data)
 {
-	char	*flags;
+	char	*s_flags;
 
-	flags = NULL;
+	s_flags = NULL;
 	data->i += 1;
 	data->j = data->i;
 	//printf("j :%zu, i: %zu\n", data->j, data->i);
-	while (ft_isflag(s[data->j]))
+	while (ft_isflag(s[data->j]) || ft_isdigit(s[data->j]))
 		data->j += 1;
-	flags = ft_strndup(&s[data->i], data->j - data->i); //flags == NULL si rien
+	s_flags = ft_strndup(&s[data->i], data->j - data->i); //flags == NULL si rien
 	data->i = data->j;
-	printf("Flags: %s\n", flags);
-	return (flags);
+	data->flags = 0;
+	printf("s_flags: %s\n", s_flags);
+	return (s_flags);
 }
 
 //cspdiuxX%
@@ -94,7 +90,7 @@ int		ft_printf(char const *str, ...)
 			data.count += 1;
 		}
 		else
-			do_forrest(s, &data, get_flags(s, &data));//get_flags(&s[data.i], data));
+			do_forrest(s, &data, get_flags(s, &data));
 	}
 	va_end(data.ap);
 	return (data.count);
@@ -111,10 +107,9 @@ int 	main(int ac, char **av)
 	//count = ft_printf("str: %s\nstr2 : %s\nint 1: %d\n", "lololol", "str2", 25);
 	//count = ft_printf("usi: %u\nint neg: %d\nchar : %c\nusi hexa: %x\n%X\n", usi1, -25884, '-', usi1, usi1);
 	//count = ft_printf("unsigned char: %u\n", uc1);
-	count = ft_printf("int i: %.0**i\ndsadasdas%....00d\n", 1254, 585);
-	count = ft_printf("%%\n");
-
-
-	printf("mpf: count: %d\n", count);
+	count = ft_printf("%32.*d\n", 8, 25);
+//	count = ft_printf("%%\n");
+	printf("%12s\n", "dsadasdas");
+	printf("\nmpf: count: %d\n", count);
 	//printf("rpf c: %d\n", printf("testtesttest\n"));
 }

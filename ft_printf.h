@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/25 17:48:44 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/28 18:25:07 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,35 @@
 # define USI (unsigned int)
 # define HEXA "0123456789abcdef"
 # define BIG_HEXA "0123456789ABCDEF"
+# define FLAG_MINUS (1)
+# define FLAG_WC (2)
+# define FLAG_DOT (4)
+# define FLAG_ZERO (8)
+# define FLAG_NUMBER (16)
+// ".0-*"
 
 typedef struct	s_params
 {
-	size_t 	count;
 	va_list	ap;
+	size_t 	count;
 	size_t 	i;
 	size_t 	j;
+	int		flags;
+	int		width;
+	int		prec;
 }				t_params;
 
 // body
 int			ft_printf(char const *str, ...);
+void 		do_forrest(char *s, t_params *data, char *s_flags);
+
+//flags
+void 		bilbo_flaggings(char *s_flags, t_params *data);
 char 		*get_flags(char *s, t_params *data);
-void 		do_forrest(char *s, t_params *data, char *flags);
+void 		print_prec_nb(t_params *data, size_t len);
+void 		print_width(t_params *data, size_t len);
+int			get_id(char c);
+void 		flags_forrest(char *s_flags, t_params *data);
 
 // utils
 int 		ft_isflag(char c);
@@ -39,13 +55,13 @@ void		ft_init_struct(t_params *data);
 
 // printers
 void 		ft_putstr_pf(char *s, t_params *data);
-void 		print_char(t_params *data, char *flags);
-void 		print_str(t_params *data, char *flags);
-void 		print_void(t_params *data, char *flags);
-void 		print_int(t_params *data, char *flags);
-void 		print_usint(t_params *data, char *flags);
-void 		print_hexa(t_params *data, char *flags);
-void 		print_up_hexa(t_params *data, char *flags);
+void 		print_char(t_params *data);
+void 		print_str(t_params *data);
+void 		print_void(t_params *data);
+void 		print_int(t_params *data);
+void 		print_usint(t_params *data);
+void 		print_hexa(t_params *data);
+void 		print_up_hexa(t_params *data);
 
 
 #endif
