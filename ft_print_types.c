@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/28 19:06:04 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:15:06 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void 	ft_putstr_pf(char *s, t_params *data)
 		size_t len;
 
 		len = ft_strlen(s);
-		printf("flags :%d\n", data->flags);
-		printf("prec: %d\n", data->prec);
+//		printf("flags :%d\n", data->flags);
+//		printf("prec: %d\n", data->prec);
 		if ((data->flags & FLAG_DOT) && data->prec != -1)
 			if ((size_t)data->prec < len)
 				len = (size_t)data->prec;

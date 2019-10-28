@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 12:19:26 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/28 19:00:27 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:14:47 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void 	bilbo_flaggings(char *s_flags, t_params *data) // on les flags
 			i++;
 		}
 	}
-	printf("FLAGS: %d\n", data->flags);
+	//printf("FLAGS: %d\n", data->flags);
 	if (data->flags & FLAG_DOT)
 		data->prec = 0;
 	flags_forrest(s_flags, data);
