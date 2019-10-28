@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/28 19:15:06 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:33:06 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 void 	print_char(t_params *data)
 {
-	// if (flags)
-	ft_putchar(va_arg(data->ap, int));
-	data->count += 1;
+	char c;
+	char pc[2];
+
+	c = va_arg(data->ap, int);
+	pc[0] = c;
+	pc[1] = 0;
+	data->prec = -1;
+	if (data->flags & FLAG_ZERO)
+		data->flags -= 8;
+	ft_putstr_pf(pc, data);
 }
 
 void 	ft_putstr_pf(char *s, t_params *data)

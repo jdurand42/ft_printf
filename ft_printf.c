@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/28 19:16:08 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:31:41 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ int 	main(int ac, char **av)
 	//count = ft_printf("str: %s\nstr2 : %s\nint 1: %d\n", "lololol", "str2", 25);
 	//count = ft_printf("usi: %u\nint neg: %d\nchar : %c\nusi hexa: %x\n%X\n", usi1, -25884, '-', usi1, usi1);
 	//count = ft_printf("unsigned char: %u\n", uc1);
-	count = ft_printf("%0*.*s, yeah %d, lolo %%l dsdasd %.2s\n", 10, 8,"123456789", 1, "lololo");
+	count = ft_printf("%0-012.10c\n", 'a');
 //	count = ft_printf("%%\n");
-	printf("%12s\n", "dsadasdas");
+	printf("%-12c\n", 'a');
 	printf("\nmpf: count: %d\n", count);
 	//printf("rpf c: %d\n", printf("testtesttest\n"));
 }
