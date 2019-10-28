@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/28 19:01:12 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:06:04 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ void 	ft_putstr_pf(char *s, t_params *data)
 		printf("flags :%d\n", data->flags);
 		printf("prec: %d\n", data->prec);
 		if ((data->flags & FLAG_DOT) && data->prec != -1)
-		{
-			if (data->flags & FLAG_NUMBER)
-				print_prec_nb(data, len);
-			else if ((size_t)data->prec < len)
+			if ((size_t)data->prec < len)
 				len = (size_t)data->prec;
-		}
 		if (!(data->flags & FLAG_MINUS))
 			print_width(data, len);
+		if (data->flags & FLAG_NUMBER)
+			print_prec_nb(data, len);
 		write(1, s, len);
 		data->count += len;
 		if ((data->flags & FLAG_MINUS) && !(data->flags & FLAG_NUMBER))
@@ -142,6 +140,7 @@ void 	print_prec_nb(t_params *data, size_t len)
 	{
 		ft_putchar('0');
 		len++;
-		data->count += 1;
+		if (data->width == -1)
+			data->count += 1;
 	}
 }
