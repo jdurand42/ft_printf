@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/30 17:53:24 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/30 20:25:24 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ void 		flags_forrest(char *s_flags, t_params *data);
 
 // widt - prec
 void 		do_prec(t_params *data, size_t *len);
-void 		print_width(t_params *data, size_t *len, char *s);
+void 		do_neg(t_params *data, char **s, size_t *len);
 void 		print_width_s(t_params *data, size_t len);
-void 		print_prec(t_params *data, char *s, size_t len);
+void 		print_prec(t_params *data, size_t len, char **s);
 
 // utils
 int 		ft_isflag(char c);
 void		ft_init_struct(t_params *data);
+char		*ft_strjoin_free(char const *s1, char const *s2);
 
 // printers
 void 		ft_putstr_pf(char *s, t_params *data);
@@ -66,6 +67,8 @@ void 		print_int(t_params *data);
 void 		print_usint(t_params *data);
 void 		print_hexa(t_params *data);
 void 		print_up_hexa(t_params *data);
+
+
 
 
 #endif
