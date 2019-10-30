@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/28 19:33:06 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/30 18:52:52 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,85 @@ void 	print_char(t_params *data)
 
 void 	ft_putstr_pf(char *s, t_params *data)
 {
-		//;
-		size_t len;
+	size_t	len;
 
-		len = ft_strlen(s);
-//		printf("flags :%d\n", data->flags);
-//		printf("prec: %d\n", data->prec);
-		if ((data->flags & FLAG_DOT) && data->prec != -1)
-			if ((size_t)data->prec < len)
-				len = (size_t)data->prec;
-		if (!(data->flags & FLAG_MINUS))
-			print_width(data, len);
-		if (data->flags & FLAG_NUMBER)
-			print_prec_nb(data, len);
-		write(1, s, len);
-		data->count += len;
-		if ((data->flags & FLAG_MINUS) && !(data->flags & FLAG_NUMBER))
-			print_width(data, len);
+
+	if ((data->flags & FLAG_DOT) && (data->flags & FLAG_ZERO))
+		data->flags -=8;
+	len = ft_strlen(s);
+	if (data->prec != -1)
+		do_prec(data, &len);
+	if (!(data->flags & FLAG_MINUS))
+		print_width(data, &len, s);
+	if (data->prec != -1)
+		print_prec(data, s, len);
+	write(1, s, len);
+	data->count += len;
+	if (data->flags & FLAG_MINUS)
+		print_width(data, &len, s);
+}
+
+void 	do_prec(t_params *data, size_t *len)
+{
+	int len_0;
+
+	len_0 = 0;
+	if (!(data->flags & FLAG_NUMBER))
+	{
+		if ((int)*len > data->prec)
+			*len = (int)data->prec;
+		return ;
+	}
+	else if ((data->flags & FLAG_NUMBER))
+	{
+		//printf("len: %lu, %d\n", *len, data->prec);
+		if ((int)*len < data->prec)
+			if (data->width != -1)
+				data->width -= (data->prec - (int)*len);
+		//printf("width: %d, prec : %d\n", data->width, data->prec);
+		return ;
+	}
+}
+
+void 	print_prec(t_params *data, char *s, size_t len)
+{
+	int len_0;
+
+	(void)s;
+	len_0 = 0;
+	if (!(data->flags & FLAG_NUMBER) || (int)len > data->prec)
+		return ;
+	len_0 = data->prec - (int)len;
+	while (len_0--)
+	{
+		ft_putchar('0');
+		data->count += 1;
+	}
+}
+
+void 	print_width(t_params *data, size_t *len, char *s)
+{
+	if (data->width > (int)*len)
+		print_width_s(data, *len);
+	return ;
+	(void)s;
+}
+
+void 	print_width_s(t_params *data, size_t len)
+{
+	int len_width;
+
+	if (data->width == -1)
+		return ;
+	len_width = data->width - (int)len;
+	while (len_width--)
+	{
+		if (!(data->flags & FLAG_ZERO))
+			ft_putchar(' ');
+		else
+			ft_putchar('0');
+		data->count += 1;
+	}
 }
 
 void 	print_str(t_params *data)
@@ -52,10 +114,15 @@ void 	print_str(t_params *data)
 	// if (!flags)
 	char *s_arg;
 
-
 	s_arg = va_arg(data->ap, char*);
 	if (!s_arg)
+	{
+		write(1, "(null)", 6);
+		data->count += 6;
 		return ;
+	}
+	if (data->flags & FLAG_ZERO)
+		data->flags -= 8;
 	ft_putstr_pf(s_arg, data);
 }
 
@@ -63,11 +130,12 @@ void 	print_void(t_params *data)
 {
 	char *s_adress;
 
-
+	if (data->flags & FLAG_ZERO)
+		data->flags -= 8;
 	if(!(s_adress = ft_itoa_base(va_arg(data->ap, unsigned int), HEXA)))
 		return ;
 	data->flags |= (1 << 4);
-	ft_putstr_pf("0x", data);
+	//ft_putstr_pf("0x", data); // Ca ca va foutre la merde
 	ft_putstr_pf(s_adress, data);
 	free(s_adress);
 	s_adress = NULL;
@@ -82,6 +150,9 @@ void 	print_int(t_params *data)
 	if (!(s_int = ft_itoa(va_arg(data->ap, int))))
 		return ;
 	data->flags |= (1 << 4);
+	/* gerer le neg
+	if (s_int != NULL && s_int[0] == '-')
+		*/
 	ft_putstr_pf(s_int, data);
 	free(s_int);
 	s_int = NULL;
@@ -124,30 +195,4 @@ void 	print_up_hexa(t_params *data)
 	ft_putstr_pf(s_bighexa, data);
 	free(s_bighexa);
 	s_bighexa = NULL;
-}
-
-void 	print_width(t_params *data, size_t len)
-{
-	if (data->width == -1)
-		return ;
-	while ((int)len < data->width)
-	{
-		if (data->flags & FLAG_ZERO)
-			ft_putchar('0');
-		else if (!(data->flags & FLAG_ZERO))
-			ft_putchar(' ');
-		data->count += 1;
-		len++;
-	}
-}
-
-void 	print_prec_nb(t_params *data, size_t len)
-{
-	while ((int)len < data->prec)
-	{
-		ft_putchar('0');
-		len++;
-		if (data->width == -1)
-			data->count += 1;
-	}
 }

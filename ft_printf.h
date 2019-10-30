@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/28 18:25:07 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/30 17:53:24 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,14 @@ void 		do_forrest(char *s, t_params *data, char *s_flags);
 //flags
 void 		bilbo_flaggings(char *s_flags, t_params *data);
 char 		*get_flags(char *s, t_params *data);
-void 		print_prec_nb(t_params *data, size_t len);
-void 		print_width(t_params *data, size_t len);
 int			get_id(char c);
 void 		flags_forrest(char *s_flags, t_params *data);
+
+// widt - prec
+void 		do_prec(t_params *data, size_t *len);
+void 		print_width(t_params *data, size_t *len, char *s);
+void 		print_width_s(t_params *data, size_t len);
+void 		print_prec(t_params *data, char *s, size_t len);
 
 // utils
 int 		ft_isflag(char c);
