@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 12:52:19 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 15:17:28 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,9 @@ int 	main(int ac, char **av)
 	//count = ft_printf("str: %s\nstr2 : %s\nint 1: %d\n", "lololol", "str2", 25);
 	//count = ft_printf("usi: %u\nint neg: %d\nchar : %c\nusi hexa: %x\n%X\n", usi1, -25884, '-', usi1, usi1);
 	//count = ft_printf("unsigned char: %u\n", uc1);
-	count = ft_printf("%-32.5s\n", NULL);
-	int count2 = printf("%-32.5s\n", NULL);
+	count = ft_printf("%32.25d\n", -2555);
+	int count2 = printf("%32.25d\n", -2555);
 	//printf("itoa: %s\n", ft_itoa_base((unsigned int)&a, HEXA));
-	while (1);
 //	count = ft_printf("%%\n");
 	//printf("%-12c\n", 'a');
 	printf("\nmpf: count: %d, count2: %d\n", count, count2);

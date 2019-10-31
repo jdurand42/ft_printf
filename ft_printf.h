@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 12:48:58 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 14:50:25 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void 		print_prec(t_params *data, size_t len, char **s);
 int 		ft_isflag(char c);
 void		ft_init_struct(t_params *data);
 char		*ft_strjoin_free(char const *s1, char const *s2);
+int			ft_atoi_pos(char const *str);
 
 // printers
 void 		ft_putstr_pf(char *s, t_params *data);

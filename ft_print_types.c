@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 12:42:26 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 15:13:09 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void 	print_char(t_params *data)
 	pc[1] = 0;
 	data->prec = -1;
 	if (data->flags & FLAG_ZERO)
-		data->flags -= 8;
+		data->flags |= (1 << 3);
 	ft_putstr_pf(pc, data);
 }
 
@@ -36,7 +36,7 @@ void 	print_percent(t_params *data)
 	pc[1] = 0;
 	data->prec = -1;
 	if (data->flags & FLAG_ZERO)
-		data->flags -= 8;
+		data->flags |= (1 << 3);
 	ft_putstr_pf(pc, data);
 }
 
@@ -49,7 +49,7 @@ void 	print_str(t_params *data)
 	if (!s_arg)
 		s_arg = ("(null)");
 	if (data->flags & FLAG_ZERO)
-		data->flags -= 8;
+		data->flags |= (1 << 3);
 	ft_putstr_pf(s_arg, data);
 }
 
@@ -58,7 +58,7 @@ void 	print_void(t_params *data)
 	char *s_adress;
 
 	if (data->flags & FLAG_ZERO)
-		data->flags -= 8;
+		data->flags |= (1 << 3);
 	if(!(s_adress = ft_itoa_base_ul(va_arg(data->ap, unsigned long), HEXA)))
 		return ;
 	data->flags |= (1 << 4);

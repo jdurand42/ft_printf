@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 19:44:34 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 12:34:13 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 15:29:17 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void 	ft_putstr_pf(char *s, t_params *data)
 		len += 1;
 	do_neg(data, &s, &len);
 	if ((data->flags & FLAG_DOT) && (data->flags & FLAG_ZERO))
-		data->flags -= 8;
-	if (data->prec != -1)
+		data->flags |= (1 << 3);
+	if (data->prec > -1)
 		do_prec(data, &len);
 	if (!(data->flags & FLAG_MINUS))
 		print_width_s(data, len);
@@ -43,12 +43,16 @@ void 	do_neg(t_params *data, char **s, size_t *len)
 	!(data->flags & FLAG_DOT))
 	{
 		ft_putchar('-');
+		data->count += 1;
 		*s = *s + 1;
 		*len -= 1;
 		data->width -= 1;
 	}
-	else if ((data->flags & FLAG_DOT) && data->width != -1)
+	else if (data->prec > 0 && data->width > 0)
+	{
+		*len -= 1; // sparadrad
 		data->width -= 1;
+	}
 }
 
 void 	do_prec(t_params *data, size_t *len)

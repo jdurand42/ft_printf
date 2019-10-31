@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:21:53 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 11:08:21 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 15:07:29 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,31 @@ char		*ft_strjoin_free(char const *s1, char const *s2)
 	ft_strcat(b, s2);
 	free((char*)s2);
 	return (b);
+}
+
+static int	ft_iswhitespace(char c)
+{
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (1);
+	else
+		return (0);
+}
+
+int			ft_atoi_pos(char const *str)
+{
+	int	i;
+	int	resultat;
+
+	resultat = 0;
+	i = 0;
+	while (str[i] != '\0' && (ft_iswhitespace(str[i])))
+		i++;
+	if ((str[i] != '\0' && str[i] == '-') || str[i] == '+')
+		i++;
+	while (str[i] != '\0' && str[i] <= '9' && str[i] >= '0')
+	{
+		resultat = resultat * 10 + str[i] - '0';
+		i++;
+	}
+	return (resultat);
 }
