@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 14:50:25 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 15:42:14 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void 		parse_prec(char *s_flags, t_params *data, int *i);
 void 		do_prec(t_params *data, size_t *len);
 void 		do_neg(t_params *data, char **s, size_t *len);
 void 		print_width_s(t_params *data, size_t len);
-void 		print_prec(t_params *data, size_t len, char **s);
+void 		print_prec(t_params *data, size_t *len, char **s);
 
 
 // utils
