@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/30 20:34:10 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 12:42:26 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ void 	print_char(t_params *data)
 	ft_putstr_pf(pc, data);
 }
 
+void 	print_percent(t_params *data)
+{
+	char c;
+	char pc[2];
+
+	c = '%';
+	pc[0] = c;
+	pc[1] = 0;
+	data->prec = -1;
+	if (data->flags & FLAG_ZERO)
+		data->flags -= 8;
+	ft_putstr_pf(pc, data);
+}
+
 void 	print_str(t_params *data)
 {
 	// if (!flags)
@@ -33,11 +47,7 @@ void 	print_str(t_params *data)
 
 	s_arg = va_arg(data->ap, char*);
 	if (!s_arg)
-	{
-		write(1, "(null)", 6);
-		data->count += 6;
-		return ;
-	}
+		s_arg = ("(null)");
 	if (data->flags & FLAG_ZERO)
 		data->flags -= 8;
 	ft_putstr_pf(s_arg, data);
@@ -81,7 +91,7 @@ void 	print_usint(t_params *data)
 	char *s_usint;
 
 	// if (!flags)
-	if (!(s_usint = ft_itoa(va_arg(data->ap, unsigned int))))
+	if (!(s_usint = ft_itoa_us(va_arg(data->ap, unsigned int))))
 		return ;
 	data->flags |= (1 << 4);
 	ft_putstr_pf(s_usint, data);

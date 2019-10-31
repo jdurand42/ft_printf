@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 12:19:26 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/30 20:33:49 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 12:50:56 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,42 +60,97 @@ void 	flags_forrest(char *s_flags, t_params *data)
 	int i;
 
 	i = 0;
-	if (data->flags & FLAG_ZERO)
+	while (s_flags[i] == '0' || s_flags[i] == '-')
 		i++;
-	if (data->flags & FLAG_MINUS)
-		i++;
-	while (s_flags[i] != 0 && s_flags[i] != '.')
+	parse_width(s_flags, data, &i);
+	if (data->flags & FLAG_DOT)
 	{
-		if (s_flags[i] == '*')
+		if (s_flags[i] == '.')
+			i++;
+		parse_prec(s_flags, data, &i);
+	}
+}
+
+void 	parse_width(char *s_flags, t_params *data, int *i)
+{
+	while (s_flags[*i] != 0 && s_flags[*i] != '.')
+	{
+		if (s_flags[*i] == '*')
 		{
 			data->width = va_arg(data->ap, int);
-			i++;
+			*i += 1;
 		}
+		else if (ft_isdigit(s_flags[*i]))
+		{
+			data->width = ft_atoi(&s_flags[*i]);
+			//printf("width: %d", data->width);
+			while (ft_isdigit(s_flags[*i]))
+				*i += 1;
+		}
+		else
+			*i += 1;
+	} // en principe, width geree
+}
+
+void 	parse_prec(char *s_flags, t_params *data, int *i)
+{
+	while (s_flags[*i] != 0 && (data->flags & FLAG_DOT))
+	{
+		if (s_flags[*i] != 0 && s_flags[*i] != '*')
+		{
+			data->prec = ft_atoi(&s_flags[*i]);
+			while (ft_isdigit(s_flags[*i]))
+				*i += 1;
+			}
+		else if (s_flags[*i] != 0 && s_flags[*i] == '*')
+		{
+			data->prec = va_arg(data->ap, int);
+			*i += 1;
+		}
+		else
+			*i += 1;
+	}
+}
+
+
+
+/*
+void 	flags_forrest(char *s_flags, t_params *data)
+{
+	int i;
+
+	i = 0;
+	while (s_flags[i] != 0 && (s_flags[i] == '0' || s_flags[i] == '-'))
+		i++;
+	while (s_flags[i] != 0)
+	{
 		if (ft_isdigit(s_flags[i]))
 		{
 			data->width = ft_atoi(&s_flags[i]);
-			//printf("width: %d", data->width);
 			while (ft_isdigit(s_flags[i]))
 				i++;
 		}
-	} // en principe, width geree
+		if (s_flags[i] == '*')
+			data->width = va_arg(data->ap, int);
+		if (s_flags[i] != 0 && s_flags[i] == '.')
+			break;
+		else if (s_flags != 0)
+			i++;
+	}
 	if (s_flags[i] == '.')
-		i++;
-	while (s_flags[i] != 0 && (data->flags & FLAG_DOT))
-	{
-		if (s_flags[i] != 0 && s_flags[i] != '*')
+		while (s_flags[i++] != 0)
 		{
-			data->prec = ft_atoi(&s_flags[i]);
-			while (ft_isdigit(s_flags[i]))
-				i++;
-		}
-		if (s_flags[i] != 0 && s_flags[i] == '*')
-		{
-			data->prec = va_arg(data->ap, int);
+			if (ft_isdigit(s_flags[i]))
+			{
+				data->prec = ft_atoi(&s_flags[i]);
+				while (ft_isdigit(s_flags[i]))
+					i++;
+			}
+			if (s_flags[i] == '*')
+				data->prec = va_arg(data->ap, int);
 			i++;
 		}
-	}
-}
+}*/
 
 /*
 	i = 0;

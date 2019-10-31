@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 17:27:05 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/30 19:21:23 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/30 21:09:45 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int				ft_atoi(char const *str);
 char			*ft_itoa_base(long int nbr, char *base);
 char			*ft_itoa_base_ul(unsigned long nbr, char *base);
 char			*ft_itoa(int n);
+char			*ft_itoa_us(unsigned int n);
 int				ft_myatoi(char *str);
 void			ft_putnbr_base(int nbr, char *base);
 int				ft_nbrlen(long int nbr);
