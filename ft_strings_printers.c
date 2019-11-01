@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 19:44:34 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/01 16:14:29 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:52:46 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void 	ft_putstr_pf(char *s, t_params *data)
 	if (s[0] == 0)
 		len += 1;
 	if (data->prec > -1)
-		do_prec(data, &len);
+		do_prec_s(data, &len);
 	if (!(data->flags & FLAG_MINUS))
 		print_width_s(data, len);
 //	if (data->prec > -1)
