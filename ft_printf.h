@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 15:42:14 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/01 16:18:10 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define FLAG_DOT (4)
 # define FLAG_ZERO (8)
 # define FLAG_NUMBER (16)
+# define FLAG_NEG (32)
 // ".0-*"
 
 typedef struct	s_params
@@ -40,6 +41,7 @@ typedef struct	s_params
 // body
 int			ft_printf(char const *str, ...);
 void 		do_forrest(char *s, t_params *data, char *s_flags);
+void 		put_forrest(char *s, t_params *data);
 
 //flags
 void 		bilbo_flaggings(char *s_flags, t_params *data);
@@ -50,11 +52,12 @@ void 		parse_width(char *s_flags, t_params *data, int *i);
 void 		parse_prec(char *s_flags, t_params *data, int *i);
 
 // widt - prec
-void 		do_prec(t_params *data, size_t *len);
+void 		do_prec_s(t_params *data, size_t *len);
 void 		do_neg(t_params *data, char **s, size_t *len);
 void 		print_width_s(t_params *data, size_t len);
-void 		print_prec(t_params *data, size_t *len, char **s);
 
+void 		check_number(char *s, t_params *data);
+void 		print_numbers(char *s, t_params *data);
 
 // utils
 int 		ft_isflag(char c);
@@ -72,6 +75,7 @@ void 		print_usint(t_params *data);
 void 		print_hexa(t_params *data);
 void 		print_up_hexa(t_params *data);
 void 		print_percent(t_params *data);
+void 		print_random_char(t_params *data, char c);
 
 
 

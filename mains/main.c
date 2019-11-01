@@ -1,8 +1,8 @@
-#include "ft_printf.h"
+#include "../ft_printf.h"
 # include <stdio.h>
 
 
-/*
+
 int main() {
     int i;
     i = 0;
@@ -1220,4 +1220,4 @@ int main() {
 		while (1)
 			;
 	return (0);
-}*/
+}

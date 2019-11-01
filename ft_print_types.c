@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 17:16:20 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/01 16:22:43 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void 	print_char(t_params *data)
 	data->prec = -1;
 	if (data->flags & FLAG_ZERO)
 		data->flags |= (1 << 3);
-	ft_putstr_pf(pc, data);
+	put_forrest(pc, data);
 }
 
 void 	print_percent(t_params *data)
@@ -37,7 +37,19 @@ void 	print_percent(t_params *data)
 	data->prec = -1;
 	if (data->flags & FLAG_ZERO)
 		data->flags |= (1 << 3);
-	ft_putstr_pf(pc, data);
+	put_forrest(pc, data);
+}
+
+void 	print_random_char(t_params *data, char c)
+{
+	char pc[2];
+
+	pc[0] = c;
+	pc[1] = 0;
+	data->prec = -1;
+	if (data->flags & FLAG_ZERO)
+		data->flags |= (1 << 3);
+	put_forrest(pc, data);
 }
 
 void 	print_str(t_params *data)
@@ -50,7 +62,7 @@ void 	print_str(t_params *data)
 		s_arg = ("(null)");
 	if (data->flags & FLAG_ZERO)
 		data->flags |= (1 << 3);
-	ft_putstr_pf(s_arg, data);
+	put_forrest(s_arg, data);
 }
 
 void 	print_void(t_params *data)
@@ -58,12 +70,12 @@ void 	print_void(t_params *data)
 	char *s_adress;
 
 	if (data->flags & FLAG_ZERO)
-		data->flags |= (1 << 3);
+		data->flags |= (1 << 3); //probableent nul
 	if(!(s_adress = ft_itoa_base_ul(va_arg(data->ap, unsigned long), HEXA)))
 		return ;
 	data->flags |= (1 << 4);
 	s_adress = ft_strjoin_free("0x", s_adress);
-	ft_putstr_pf(s_adress, data);
+	put_forrest(s_adress, data);
 	free(s_adress);
 	s_adress = NULL;
 }
@@ -77,11 +89,7 @@ void 	print_int(t_params *data)
 	if (!(s_int = ft_itoa(va_arg(data->ap, int))))
 		return ;
 	data->flags |= (1 << 4);
-	//printf("%s\n", s_int);
-	/* gerer le neg
-	if (s_int != NULL && s_int[0] == '-')
-		*/
-	ft_putstr_pf(s_int, data);
+	put_forrest(s_int, data);
 	free(s_int);
 	s_int = NULL;
 }
@@ -94,7 +102,7 @@ void 	print_usint(t_params *data)
 	if (!(s_usint = ft_itoa_us(va_arg(data->ap, unsigned int))))
 		return ;
 	data->flags |= (1 << 4);
-	ft_putstr_pf(s_usint, data);
+	put_forrest(s_usint, data);
 	free(s_usint);
 	s_usint = NULL;
 }
@@ -107,7 +115,7 @@ void 	print_hexa(t_params *data)
 	if (!(s_hexa = ft_itoa_base(va_arg(data->ap, unsigned int), HEXA)))
 		return ;
 	data->flags |= (1 << 4);
-	ft_putstr_pf(s_hexa, data);
+	put_forrest(s_hexa, data);
 	free(s_hexa);
 	s_hexa = NULL;
 }
@@ -120,7 +128,7 @@ void 	print_up_hexa(t_params *data)
 	if (!(s_bighexa = ft_itoa_base(va_arg(data->ap, unsigned int), BIG_HEXA)))
 		return ;
 	data->flags |= (1 << 4);
-	ft_putstr_pf(s_bighexa, data);
+	put_forrest(s_bighexa, data);
 	free(s_bighexa);
 	s_bighexa = NULL;
 }

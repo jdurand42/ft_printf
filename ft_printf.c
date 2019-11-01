@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/31 17:28:10 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 18:47:01 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void 	do_forrest(char *s, t_params *data, char *s_flags)
 		print_up_hexa(data);
 	else if (s[data->i] == '%')
 		print_percent(data);
+	else if (s[data->i])
+		print_random_char(data, s[data->i]);
 	if (s_flags)
 	{
 		free(s_flags);
@@ -98,7 +100,7 @@ int		ft_printf(char const *str, ...)
 	va_end(data.ap);
 	return (data.count);
 }
-
+/*
 int 	main(int ac, char **av)
 {
 	int count = 0;
@@ -119,3 +121,4 @@ int 	main(int ac, char **av)
 	printf("\nmpf: count: %d, count2: %d\n", count, count2);
 	//printf("rpf c: %d\n", printf("testtesttest\n"));
 }
+*/
