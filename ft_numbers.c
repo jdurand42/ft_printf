@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:07:29 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/01 19:07:33 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/04 10:25:28 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void 	print_width_n(t_params *data, char *b, size_t len)
 			//printf("buffer: %s\n", b);
 			data->count += 1;
 		}
-		else if (!(data->flags & FLAG_MINUS) len > 1 && b[0] == '0' && b[1] == 'x')
+		else if (!(data->flags & FLAG_MINUS) && len > 1 && b[0] == '0' && b[1] == 'x')
 		{
 			ft_putstr("0x");
 			b = ft_strcpy(b, &b[2]);

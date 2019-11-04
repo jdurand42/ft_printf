@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/01 19:04:43 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/04 10:25:26 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void 	print_void(t_params *data)
 	if(!(s_adress = ft_itoa_base_ul(va_arg(data->ap, unsigned long), HEXA)))
 		return ;
 	data->flags |= (1 << 4);
-	s_adress = ft_strjoin_free("0x", s_adress);
+	//s_adress = ft_strjoin_free("0x", s_adress);
 	put_forrest(s_adress, data);
 	free(s_adress);
 	s_adress = NULL;
