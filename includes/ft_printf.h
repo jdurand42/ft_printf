@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/04 18:09:51 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/04 18:45:15 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define FLAG_NUMBER (16)
 # define FLAG_NEG (32)
 # define FLAG_STR (64)
-// ".0-*"
 
 typedef struct	s_params
 {
