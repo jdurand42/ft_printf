@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:52:01 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/04 11:34:52 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/04 12:55:55 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,18 @@ void 	print_str(t_params *data)
 
 void 	print_void(t_params *data)
 {
-	char *s_adress;
+	char			*s_adress;
+	unsigned long	ad_arg;
 
 	if (data->flags & FLAG_ZERO)
-		data->flags |= (1 << 3); //probableent nul
-	if(!(s_adress = ft_itoa_base_ul(va_arg(data->ap, unsigned long), HEXA)))
+		data->flags |= (1 << 3);
+	ad_arg = va_arg(data->ap, unsigned long);
+	if (ad_arg == 0 && data->prec == 0)
+	{
+		if (!(s_adress = ft_strdup("")))
+			return ;
+	}
+	else if (!(s_adress = ft_itoa_base_ul(ad_arg, HEXA)))
 		return ;
 	data->flags |= (1 << 4);
 	//s_adress = ft_strjoin_free("0x", s_adress);
@@ -82,11 +89,16 @@ void 	print_void(t_params *data)
 
 void 	print_int(t_params *data)
 {
-	char *s_int;
+	char	*s_int;
+	int		i_arg;
 
-	// if (!flags)
-
-	if (!(s_int = ft_itoa(va_arg(data->ap, int))))
+	i_arg = va_arg(data->ap, int);
+	if (i_arg == 0 && (data->prec == 0))
+	{
+		if (!(s_int = ft_strdup("")))
+			return ;
+	}
+	else if (!(s_int = ft_itoa(i_arg)))
 		return ;
 	data->flags |= (1 << 4);
 	put_forrest(s_int, data);
@@ -96,10 +108,16 @@ void 	print_int(t_params *data)
 
 void 	print_usint(t_params *data)
 {
-	char *s_usint;
+	char 			*s_usint;
+	unsigned int	u_arg;
 
-	// if (!flags)
-	if (!(s_usint = ft_itoa_us(va_arg(data->ap, unsigned int))))
+	u_arg = va_arg(data->ap, unsigned int);
+	if (u_arg == 0 && data->prec == 0)
+	{
+		if (!(s_usint = ft_strdup("")))
+			return ;
+	}
+	else if (!(s_usint = ft_itoa_us(u_arg)))
 		return ;
 	data->flags |= (1 << 4);
 	put_forrest(s_usint, data);
@@ -109,10 +127,16 @@ void 	print_usint(t_params *data)
 
 void 	print_hexa(t_params *data)
 {
-	char *s_hexa;
+	char			*s_hexa;
+	unsigned int	x_arg;
 
-	//if (!flags)
-	if (!(s_hexa = ft_itoa_base(va_arg(data->ap, unsigned int), HEXA)))
+	x_arg = va_arg(data->ap, unsigned int);
+	if (x_arg == 0 && data->prec == 0)
+	{
+		if (!(s_hexa = ft_strdup("")))
+			return ;
+	}
+	else if (!(s_hexa = ft_itoa_base(x_arg, HEXA)))
 		return ;
 	data->flags |= (1 << 4);
 	put_forrest(s_hexa, data);
@@ -122,10 +146,14 @@ void 	print_hexa(t_params *data)
 
 void 	print_up_hexa(t_params *data)
 {
-	char *s_bighexa;
+	char			*s_bighexa;
+	unsigned int	upx_arg;
 
-	//if (!flags)
-	if (!(s_bighexa = ft_itoa_base(va_arg(data->ap, unsigned int), BIG_HEXA)))
+	upx_arg = va_arg(data->ap, unsigned int);
+	if (upx_arg == 0 && data->prec == 0)
+		if (!(s_bighexa = ft_strdup("")))
+			return ;
+	if (!(s_bighexa = ft_itoa_base(upx_arg, BIG_HEXA)))
 		return ;
 	data->flags |= (1 << 4);
 	put_forrest(s_bighexa, data);

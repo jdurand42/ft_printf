@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/04 11:58:07 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/04 12:00:26 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		ft_printf(char const *str, ...)
 	va_end(data.ap);
 	return (data.count);
 }
-
+/*
 int 	main(int ac, char **av)
 {
 	int count = 0;
@@ -115,11 +115,12 @@ int 	main(int ac, char **av)
 	//count = ft_printf("unsigned char: %u\n", uc1);
 	count = ft_printf("START%-2.5dEND\n", 42);
 	int count2 = printf("START%-2.5dEND\n", 42);
-	/*count = ft_printf("START%*.5sEND\n", "bouyachakalaka");
-	int count2 = printf("START%*.5sEND\n", -30, "bouyachakalaka"); */
-	//printf("itoa: %s\n", ft_itoa_base((unsigned int)&a, HEXA));
-//	count = ft_printf("%%\n");
-	//printf("%-12c\n", 'a');
+//	count = ft_printf("START%*.5sEND\n", "bouyachakalaka");
+//	int count2 = printf("START%*.5sEND\n", -30, "bouyachakalaka");
+	printf("itoa: %s\n", ft_itoa_base((unsigned int)&a, HEXA));
+	count = ft_printf("%%\n");
+	printf("%-12c\n", 'a');
 	printf("\nmpf: count: %d, count2: %d\n", count, count2);
 	//printf("rpf c: %d\n", printf("testtesttest\n"));
  }
+*/
