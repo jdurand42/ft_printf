@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 17:27:05 by jdurand           #+#    #+#             */
-/*   Updated: 2019/10/30 21:09:45 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/10/31 12:00:40 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ t_list			*ft_lstlast(t_list *lst);
 void			ft_sort_int_tab(int *tab, int size);
 void			ft_intswap(int *a, int *b);
 int				ft_charstrcmp(const char c, const void *s2);
+char			*ft_file_str(int fd);
 
 #endif

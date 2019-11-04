@@ -5,40 +5,47 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/10/22 15:23:53 by jdurand           #+#    #+#              #
-#    Updated: 2019/10/22 15:33:50 by jdurand          ###   ########.fr        #
+#    Created: 2019\06/24 18:35:31 by jdurand           #+#    #+#              #
+#    Updated: 2019/10/13 20:17:57 by jdurand          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ft_printf.o
+NAME	=	libftprintf.a
 
-SRCS	=	$(wildcard *.c)
+SRCS	=	./srcs/ft_printf.c ./srcs/ft_print_types.c \
+			./srcs/ft_print_types2.c \
+			./srcs/ft_bilbo_flaggings.c ./srcs/ft_strings_printers.c \
+			./srcs/ft_numbers.c ./srcs/ft_initialisations.c
 
-LIB		=	./libft/libft.a
+OBJS	=	$(SRCS:.c=.o)
+
+CC		=	gcc
+
+CFLAGS	=	-Wall -Wextra -Werror
 
 RM		=	rm -f
 
-CC		=	gcc -Wall -Wextra -Werror -g3 -fsanitize=address \
-			$(SRCS) $(LIB)
+LIB		=	./libft/ft_atoi.o ./libft/ft_isdigit.o ./libft/ft_itoa.o \
+			./libft/ft_itoa_base_bonus.o ./libft/ft_itoa_base_ul_bonus.o \
+			./libft/ft_itoa_us_bonus.o ./libft/ft_putchar_bonus.o \
+			./libft/ft_strcat_bonus.o ./libft/ft_strcpy_bonus.o \
+			./libft/ft_strdup.o ./libft/ft_strlen.o \
+			./libft/ft_strndup_bonus.o
 
 all		:	$(NAME)
 
-$(NAME)	:	$(CC)
+$(NAME) :	$(OBJS)
+			cd ./libft/ ; make bonus ; cd .. ;
+			ar rc $(NAME) $(OBJS) $(LIB)
 
 clean	:
-			$(RM) $(wildcard *.o)
+			cd ./libft/ ; make clean ; cd .. ;
+			$(RM) $(OBJS) $(BONUS)
 
 fclean	:	clean
-			$(RM) $(wildcard *.out)
+			cd ./libft/ ; make fclean ; cd .. ;
+			$(RM) $(NAME)
 
-re		:	fclean all
+re	:	fclean	all
 
-normal	:
-			gcc -Wall -Wextra -Werror  $(SRCS) $(LIB)
-
-exe		:
-			./a.out
-
-re normal :	fclean normal
-
-.PHONY	:	clean fclean all re sani
+.PHONY	:	clean	fclean	all
