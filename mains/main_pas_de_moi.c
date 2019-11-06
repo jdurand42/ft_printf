@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 14:37:54 by froussel          #+#    #+#             */
-/*   Updated: 2019/11/06 14:56:51 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/06 19:58:34 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,6 +332,6 @@ int main ()
 	(i != j) ? printf(R"KO Diff return\n") : printf(G"OK\n");
 	printf("RETURN = printf :%d ft_printf: %d\n"S, i, j);
 */
-
+	while (1);
 	return 0;
 }
