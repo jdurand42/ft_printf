@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:07:29 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/04 15:59:05 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/06 15:53:44 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ void	print_numbers(char *s, t_params *data)
 
 void	check_number(char *s, t_params *data, size_t len)
 {
+	if ((data->flags & FLAG_DOT) && (data->flags & FLAG_ZERO) &&
+	data->prec >= 0)
+		data->flags ^= FLAG_ZERO;
 	if (s[0] == '-')
 		data->flags |= 32;
-	if (data->prec < (int)len)
+	if ((data->prec < (int)len))
 		data->prec = -1;
 	if (data->width < (int)len)
 		data->width = -1;

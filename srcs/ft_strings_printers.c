@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 19:44:34 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/04 18:44:31 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/06 15:53:08 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	ft_putstr_pf(char *s, t_params *data)
 
 void	put_forrest(char *s, t_params *data)
 {
-	if ((data->flags & FLAG_DOT) && (data->flags & FLAG_ZERO))
-		data->flags -= FLAG_ZERO;
 	if (data->flags & FLAG_NUMBER)
 		print_numbers(s, data);
 	else
