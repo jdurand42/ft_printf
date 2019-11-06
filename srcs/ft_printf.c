@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/06 17:08:15 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/06 19:51:10 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	do_forrest(char *s, t_params *data, char *s_flags)
 		print_percent(data);
 	else if (s[data->i] != 0)
 		print_random_char(data, s[data->i]);
-	else if (s[data->i] == 0)
-		return ;
 	free_flags(s_flags);
+	if (s[data->i] == 0)
+		return ;
 	data->i += 1;
 }
 
