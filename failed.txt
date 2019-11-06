@@ -1,2 +1,0 @@
-empty string print the \0
-precision negative

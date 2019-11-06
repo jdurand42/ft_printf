@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 16:45:44 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/06 15:51:14 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/06 16:31:42 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int main()
 {
 	/*ft_printf("%s is a string\n", "");
 	printf("%s is a string\n\n", "");*/
- 		printf("ret: %d\n", ft_printf("-%.*d\n", 0, 0));
+ 		printf("ret: %d\n", printf("|%10.*d|\n", 20, 30));
 		fflush(stdout);
- 		printf("ret: %d\n", printf("-%.*d\n", 0, 0));
+ 		printf("ret: %d\n", ft_printf("|%10.*d|\n", 20, 30));
 		fflush(stdout);
 	/*ft_printf("%.5s is a string\n", "");
 	printf("%.5s is a string\n\n", "");*/
