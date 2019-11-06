@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/06 15:58:40 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/06 17:08:33 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ void			print_hexa(t_params *data);
 void			print_up_hexa(t_params *data);
 void			print_percent(t_params *data);
 void			print_random_char(t_params *data, char c);
+void			free_flags(char *s_flags);
 
 #endif

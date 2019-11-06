@@ -6,11 +6,20 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:07:17 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/06 15:01:12 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/06 17:08:15 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+void	free_flags(char *s_flags)
+{
+	if (s_flags)
+	{
+		free(s_flags);
+		s_flags = NULL;
+	}
+}
 
 void	do_forrest(char *s, t_params *data, char *s_flags)
 {
@@ -33,11 +42,9 @@ void	do_forrest(char *s, t_params *data, char *s_flags)
 		print_percent(data);
 	else if (s[data->i] != 0)
 		print_random_char(data, s[data->i]);
-	if (s_flags)
-	{
-		free(s_flags);
-		s_flags = NULL;
-	}
+	else if (s[data->i] == 0)
+		return ;
+	free_flags(s_flags);
 	data->i += 1;
 }
 
@@ -73,7 +80,7 @@ char	*get_flags(char *s, t_params *data)
 	return (s_flags);
 }
 
-int		ft_printf(char const *str, ...)
+int		ft_printf(const char *str, ...)
 {
 	char		*s;
 	t_params	data;
