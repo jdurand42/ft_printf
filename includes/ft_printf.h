@@ -6,7 +6,7 @@
 /*   By: jdurand <jdurand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:15:50 by jdurand           #+#    #+#             */
-/*   Updated: 2019/11/06 15:55:56 by jdurand          ###   ########.fr       */
+/*   Updated: 2019/11/06 15:58:10 by jdurand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "../libft/libft.h"
 # include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
 # define HEXA "0123456789abcdef"
 # define BIG_HEXA "0123456789ABCDEF"
 # define FLAG_MINUS (1)
